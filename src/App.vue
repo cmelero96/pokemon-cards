@@ -4,25 +4,12 @@
 </template>
 
 <script>
-// import axios from 'axios';
-// import pokemonList from './static/pokemon-list';
 import MainComponent from './components/Main.vue';
 
 export default {
   name: 'App',
   components: {
     MainComponent,
-  },
-  mounted() {
-
-    // instance.get('https://pokeapi.co/api/v2/pokemon/?limit=9999').then((a) => {
-    //   const pokes = a.data.results;
-    //   let str = '';
-    //   pokes.forEach((p) => { str = str.concat(`"${p.name}",\n`); });
-    //   console.log(str);
-    // });
-
-    // console.log(pokemonList);
   },
 };
 </script>
