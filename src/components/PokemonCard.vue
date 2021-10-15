@@ -1,7 +1,11 @@
 <template>
   <card-wrapper>
     <template v-slot:header>{{ pokemon.name }}</template>
-    <template v-slot:default><img :src="pokemon.image"></template>
+    <template v-slot:default>
+      <div class='img-wrapper'>
+        <img :src="pokemon.image">
+      </div>
+    </template>
   </card-wrapper>
 </template>
 
@@ -21,3 +25,18 @@ export default {
   },
 };
 </script>
+<style lang="scss" scoped>
+.img-wrapper {
+  padding: 1em;
+  width: inherit;
+  height: inherit;
+
+  img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+    height: 100%;
+  }
+}
+</style>

@@ -14,11 +14,6 @@ export default {
     MainComponent,
   },
   mounted() {
-    // const instance = axios.create({
-    //   baseURL: 'https://some-domain.com/api/',
-    //   timeout: 1000,
-    //   headers: { 'X-Custom-Header': 'foobar' },
-    // });
 
     // instance.get('https://pokeapi.co/api/v2/pokemon/?limit=9999').then((a) => {
     //   const pokes = a.data.results;
@@ -42,7 +37,7 @@ export default {
   margin-top: 60px;
 }
 
-html {
+* {
   box-sizing: border-box;
 }
 </style>

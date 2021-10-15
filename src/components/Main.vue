@@ -4,7 +4,8 @@
 </template>
 
 <script>
-import PokemonService from '../services/FakePokemonGetter';
+// import FakePokemonService from '../services/FakePokemonGetter';
+import PokemonService from '../services/PokemonApiService';
 
 import SearchBar from './SearchBar.vue';
 import PokemonCard from './PokemonCard.vue';
@@ -20,13 +21,22 @@ export default {
     PokemonCard,
   },
   methods: {
-    onPokemonSelected(index) {
+    async onPokemonSelected(index) {
       // TODO
       console.log(`Calling API with pokedex entry #${index}`);
+      const newPokemon = await PokemonService.getPokemon(index);
+
+      if (newPokemon && newPokemon.image && newPokemon.name) {
+        this.pokemon = newPokemon;
+        this.storePokemonData(newPokemon, index);
+      }
+    },
+    // TODO
+    storePokemonData(data, index) {
+      this.$store.commit('addPokemon', { data, index });
     },
   },
   mounted() {
-    this.pokemon = PokemonService.getPokemon();
   },
 };
 </script>

@@ -8,24 +8,34 @@
     </section>
   </div>
 </template>
+<script>
+export default {
+  updated() {
+    console.log(this.$slots);
+  },
+};
+</script>
 
-<style scoped lang="scss">
+<style lang="scss" scoped>
 .card-wrapper {
   border: 3px solid black;
   border-radius: 1em;
-  width: fit-content;
+  width: 20em;
+  height: 20em;
   margin: 2em auto;
+  box-sizing: border-box;
 
     header {
       font-size: large;
       font-weight: bolder;
       border-bottom: 2px solid black;
-      padding: 1em 0 0.5em;
-      margin: -1px;
+      height: 3em;
+      padding: 1em;
     }
 
     section {
-      padding: 1em;
+      width: auto;
+      height: 16.3em;
     }
 }
 </style>
