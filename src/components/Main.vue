@@ -36,7 +36,5 @@ export default {
       this.$store.commit('addPokemon', { data, index });
     },
   },
-  mounted() {
-  },
 };
 </script>
