@@ -22,18 +22,28 @@ export default {
   },
   methods: {
     async onPokemonSelected(index) {
-      // TODO
-      console.log(`Calling API with pokedex entry #${index}`);
-      const newPokemon = await PokemonService.getPokemon(index);
+      const storedPokemon = localStorage.pokemonData && JSON.parse(localStorage.pokemonData)[index];
+      if (storedPokemon) {
+        console.log('Retrieving data from Local Storage');
+        this.pokemon = storedPokemon;
+      } else {
+        console.log('Calling API');
+        const newPokemon = await PokemonService.getPokemon(index);
 
-      if (newPokemon && newPokemon.image && newPokemon.name) {
-        this.pokemon = newPokemon;
-        this.storePokemonData(newPokemon, index);
+        if (newPokemon && newPokemon.image && newPokemon.name) {
+          this.pokemon = newPokemon;
+          this.storePokemonData(newPokemon, index);
+        }
       }
     },
-    // TODO
     storePokemonData(data, index) {
-      this.$store.commit('addPokemon', { data, index });
+      const storedData = localStorage.pokemonData ? JSON.parse(localStorage.pokemonData) : {};
+
+      // TODO: Add deep comparison, or add timestamp to objects to update once X time has passed
+      if (!storedData[index]) {
+        storedData[index] = data;
+        localStorage.pokemonData = JSON.stringify(storedData);
+      }
     },
   },
 };

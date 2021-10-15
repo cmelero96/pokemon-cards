@@ -8,13 +8,6 @@
     </section>
   </div>
 </template>
-<script>
-export default {
-  updated() {
-    console.log(this.$slots);
-  },
-};
-</script>
 
 <style lang="scss" scoped>
 .card-wrapper {

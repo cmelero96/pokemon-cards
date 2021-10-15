@@ -897,6 +897,10 @@ export default [
   'glastrier',
   'spectrier',
   'calyrex',
+];
+
+// eslint-disable-next-line no-unused-vars
+const unsupported = [
   'deoxys-attack',
   'deoxys-defense',
   'deoxys-speed',
