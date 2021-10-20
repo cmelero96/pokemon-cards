@@ -5,6 +5,7 @@
 
 <script>
 // import FakePokemonService from '../services/FakePokemonGetter';
+import { mapActions, mapGetters } from 'vuex';
 import PokemonService from '../services/PokemonApiService';
 
 import SearchBar from './SearchBar.vue';
@@ -16,33 +17,29 @@ export default {
       pokemon: null,
     };
   },
+  computed: {
+    ...mapGetters([
+      'getPokemon',
+    ]),
+  },
   components: {
     SearchBar,
     PokemonCard,
   },
   methods: {
+    ...mapActions([
+      'addPokemon',
+    ]),
     async onPokemonSelected(index) {
-      const storedPokemon = localStorage.pokemonData && JSON.parse(localStorage.pokemonData)[index];
-      if (storedPokemon) {
-        console.log('Retrieving data from Local Storage');
-        this.pokemon = storedPokemon;
+      const cachedPokemon = this.getPokemon(index);
+
+      if (cachedPokemon) {
+        this.pokemon = cachedPokemon;
       } else {
-        console.log('Calling API');
         const newPokemon = await PokemonService.getPokemon(index);
 
-        if (newPokemon && newPokemon.image && newPokemon.name) {
-          this.pokemon = newPokemon;
-          this.storePokemonData(newPokemon, index);
-        }
-      }
-    },
-    storePokemonData(data, index) {
-      const storedData = localStorage.pokemonData ? JSON.parse(localStorage.pokemonData) : {};
-
-      // TODO: Add deep comparison, or add timestamp to objects to update once X time has passed
-      if (!storedData[index]) {
-        storedData[index] = data;
-        localStorage.pokemonData = JSON.stringify(storedData);
+        this.pokemon = newPokemon;
+        this.addPokemon({ data: newPokemon, index });
       }
     },
   },

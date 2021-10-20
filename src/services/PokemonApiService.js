@@ -39,7 +39,9 @@ async function getPokemon(index) {
         name: getFormattedName(rawData.name),
       };
 
-      console.log(validData);
+      if (!validData.name || !validData.image) {
+        throw new Error();
+      }
 
       return validData;
     }).catch(() => {
