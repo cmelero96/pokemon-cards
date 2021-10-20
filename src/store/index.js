@@ -1,18 +1,15 @@
 import { createStore } from 'vuex';
 import createPersistedState from 'vuex-persistedstate';
 
+import state from './state';
+import getters from './getters';
 import mutations from './mutations';
 import actions from './actions';
-import getters from './getters';
 
 const store = createStore({
   // TODO: State is not persisted yet.
   plugins: [createPersistedState()],
-  state() {
-    return {
-      pokemon: [],
-    };
-  },
+  state,
   mutations,
   actions,
   getters,

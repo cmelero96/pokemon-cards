@@ -1,6 +1,6 @@
 export default {
   getAllPokemonData: (state) => {
-    if (!state.pokemon.length) {
+    if (!state.pokemon?.length) {
       return [];
     }
 
