@@ -36,6 +36,7 @@ export default {
     margin-left: auto;
     margin-right: auto;
     height: 100%;
+    max-width: 100%;
   }
 }
 </style>

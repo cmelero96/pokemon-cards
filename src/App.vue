@@ -1,15 +1,36 @@
 <template>
-  <main-component>
-  </main-component>
+  <top-bar></top-bar>
+  <playground-box></playground-box>
+  <side-content></side-content>
 </template>
 
 <script>
-import MainComponent from './components/Main.vue';
+import { mapActions, mapGetters } from 'vuex';
+import PlaygroundBox from './components/PlaygroundBox.vue';
+import TopBar from './components/TopBar.vue';
+import SideContent from './components/SideContent.vue';
+import PokemonService from './services/PokemonApiService';
 
 export default {
   name: 'App',
   components: {
-    MainComponent,
+    TopBar,
+    PlaygroundBox,
+    SideContent,
+  },
+  computed: {
+    ...mapGetters(['getCurrentIndex', 'getPokemon', 'getCurrentPokemon']),
+  },
+  methods: {
+    ...mapActions(['addPokemon']),
+  },
+  watch: {
+    async getCurrentIndex(newIndex) {
+      if (!this.getPokemon(newIndex)) {
+        const newPokemon = await PokemonService.getPokemon(newIndex);
+        this.addPokemon({ data: newPokemon, index: newIndex });
+      }
+    },
   },
 };
 </script>

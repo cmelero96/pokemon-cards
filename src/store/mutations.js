@@ -5,4 +5,7 @@ export default {
   resetPokemonData: (state) => {
     state.pokemon = [];
   },
+  changeCurrentIndex: (state, { index }) => {
+    state.currentIndex = index;
+  },
 };
