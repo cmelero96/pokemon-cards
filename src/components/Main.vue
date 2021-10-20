@@ -4,7 +4,6 @@
 </template>
 
 <script>
-// import FakePokemonService from '../services/FakePokemonGetter';
 import { mapActions, mapGetters } from 'vuex';
 import PokemonService from '../services/PokemonApiService';
 
