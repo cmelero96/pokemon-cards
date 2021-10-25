@@ -46,3 +46,8 @@ export default {
   },
 };
 </script>
+<style lang="scss" scoped>
+  select {
+    width: 40%;
+  }
+</style>

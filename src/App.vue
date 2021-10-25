@@ -1,6 +1,8 @@
 <template>
-  <top-bar></top-bar>
-  <playground-box></playground-box>
+  <div class="main-wrapper">
+    <top-bar></top-bar>
+    <playground-box></playground-box>
+  </div>
   <side-content></side-content>
 </template>
 
@@ -35,14 +37,32 @@ export default {
 };
 </script>
 
-<style>
+<style lang="scss">
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+
+  height: 100%;
+  width: 100%;
+
+  display: flex;
+  flex-direction: row;
+
+  .main-wrapper {
+    margin-top: 60px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 2 1;
+  }
+}
+
+html, body {
+  height: 100%;
+  overflow: hidden;
 }
 
 * {
