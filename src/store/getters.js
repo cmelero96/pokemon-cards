@@ -12,4 +12,5 @@ export default {
   getCurrentPokemon: (state, getters) => {
     return state.currentIndex ? getters.getPokemon(state.currentIndex) : null;
   },
+  getUser: (state) => state.user,
 };

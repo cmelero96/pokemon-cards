@@ -8,4 +8,7 @@ export default {
   changeCurrentIndex: (state, { index }) => {
     state.currentIndex = index;
   },
+  setUser: (state, { user }) => {
+    state.user = user;
+  },
 };
