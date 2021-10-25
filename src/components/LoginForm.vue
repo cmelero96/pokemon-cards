@@ -1,5 +1,5 @@
 <template>
-  <form>
+  <form v-if="!username">
     <label for="user">Username</label>
     <input type="text" name="user"
       v-model.trim="user"
@@ -9,19 +9,27 @@
     <div v-if="displayError" class="error">{{ errorMessage }}</div>
     <button @click.prevent="login">Enter</button>
   </form>
+  <div class="welcome" v-else>
+    <header>Welcome, {{ username }}</header>
+    <button @click="logout">This isn't me</button>
+  </div>
 </template>
 <script>
-import { mapMutations } from 'vuex';
+import { mapGetters, mapMutations } from 'vuex';
 
 export default {
   data() {
     return {
       user: '',
+      loggedIn: false,
       errorStyling: false, // To make the box red
       displayError: false, // To display the red warning message
     };
   },
   computed: {
+    ...mapGetters({
+      username: 'getUser',
+    }),
     errorMessage() {
       return this.user === '' ? "Username can't be empty!" : 'Username must be at least 3 characters long';
     },
@@ -29,6 +37,7 @@ export default {
   methods: {
     ...mapMutations([
       'setUser',
+      'clearUser',
     ]),
     login() {
       if (this.user && this.user.length >= 3) {
@@ -42,10 +51,20 @@ export default {
         }, 5000);
       }
     },
+    logout() {
+      this.clearUser();
+    },
   },
 };
 </script>
 <style lang="scss" scoped>
+  .welcome {
+    header {
+      margin: 1em;
+      font-size: 2em;
+    }
+  }
+
   form {
     padding-top: 1em;
     font-size: 1.3em;
@@ -60,8 +79,6 @@ export default {
 
     button {
       position: absolute;
-      font-size: .9em;
-      font-weight: bold;
       top: 8em;
       left: 0;
       right: 0;
@@ -82,4 +99,10 @@ export default {
       color: darkred;
     }
   }
+
+  button {
+    font-size: 1rem;
+    font-weight: bold;
+  }
+
 </style>

@@ -32,6 +32,7 @@ export default {
     flex: 1 1;
 
     &.hidden {
+      border: none;
       visibility: invisible;
       flex: none;
     }

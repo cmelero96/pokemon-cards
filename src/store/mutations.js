@@ -12,4 +12,8 @@ export default {
     state.user = user;
     console.log(state.user);
   },
+  clearUser: (state) => {
+    state.user = null;
+    console.log(state.user);
+  },
 };
