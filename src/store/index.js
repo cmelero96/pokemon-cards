@@ -7,8 +7,7 @@ import mutations from './mutations';
 import actions from './actions';
 
 const store = createStore({
-  // TODO: State is not persisted yet.
-  plugins: [createPersistedState()],
+  plugins: [createPersistedState({ paths: ['pokemon', 'currentIndex'] })],
   state,
   mutations,
   actions,
