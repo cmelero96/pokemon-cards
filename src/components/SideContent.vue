@@ -1,8 +1,11 @@
 <template>
-  <button @click="isHidden = !isHidden"></button>
-  <aside :class="{ hidden: isHidden }">
-    <login-form :hidden="isHidden"></login-form>
-  </aside>
+  <button @click="isVisible = !isVisible"></button>
+  <transition duration=250 @after-enter="renderForm=true" @before-leave="renderForm=false">
+    <div class="form-render-control" hidden v-if="isVisible"></div>
+  </transition>
+    <aside :class="{ visible: isVisible }">
+      <login-form v-show="renderForm"></login-form>
+    </aside>
 </template>
 
 <script>
@@ -14,7 +17,8 @@ export default {
   },
   data() {
     return {
-      isHidden: false,
+      isVisible: false,
+      renderForm: false,
     };
   },
 };
@@ -26,15 +30,18 @@ export default {
   }
 
   aside {
-    border: 1px solid black;
     height: 100%;
-    right: 0;
-    flex: 1 1;
+    border: none;
+    opacity:0;
+    transition: all 0.5s ease-in-out;
+    visibility: hidden;
 
-    &.hidden {
-      border: none;
-      visibility: invisible;
-      flex: none;
+    &.visible {
+      width: initial;
+      flex: 1 1;
+      border: 1px solid black;
+      visibility: visible;
+      opacity:1;
     }
   }
 </style>
