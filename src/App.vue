@@ -8,10 +8,12 @@
 
 <script>
 import { mapActions, mapGetters } from 'vuex';
+
+import PokemonService from './services/PokemonApiService';
+
 import PlaygroundBox from './components/PlaygroundBox.vue';
 import TopBar from './components/TopBar.vue';
 import SideContent from './components/SideContent.vue';
-import PokemonService from './services/PokemonApiService';
 
 export default {
   name: 'App',
