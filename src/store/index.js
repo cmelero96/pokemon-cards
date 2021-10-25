@@ -7,7 +7,7 @@ import mutations from './mutations';
 import actions from './actions';
 
 const store = createStore({
-  plugins: [createPersistedState({ paths: ['pokemon', 'currentIndex'] })],
+  plugins: [createPersistedState({ paths: ['pokemon', 'currentIndex', 'user'] })],
   state,
   mutations,
   actions,
