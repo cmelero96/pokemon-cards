@@ -30,8 +30,8 @@ export default {
   }
 
   aside {
+    background-color: lightgray;
     height: 100%;
-    border: none;
     opacity:0;
     transition: all 0.5s ease-in-out;
     visibility: hidden;
