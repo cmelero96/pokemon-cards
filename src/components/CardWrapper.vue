@@ -1,7 +1,7 @@
 <template>
   <div class="card-wrapper">
     <header>
-    <slot name="header"></slot>
+      <slot name="header"></slot>
     </header>
     <section>
       <slot></slot>
