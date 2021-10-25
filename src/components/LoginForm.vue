@@ -4,24 +4,35 @@
     <input type="text" name="user"
       v-model.trim="user"
       :class="{ error: errorStyling }"
-      @focus="errorStyling=false">
-    <div v-if="displayError" class="error">Username can't be empty!</div>
+      @focus="errorStyling=false"
+      @input="displayError=false">
+    <div v-if="displayError" class="error">{{ errorMessage }}</div>
     <button @click.prevent="login">Enter</button>
   </form>
 </template>
 <script>
+import { mapMutations } from 'vuex';
+
 export default {
   data() {
     return {
-      user: null,
+      user: '',
       errorStyling: false, // To make the box red
       displayError: false, // To display the red warning message
     };
   },
+  computed: {
+    errorMessage() {
+      return this.user === '' ? "Username can't be empty!" : 'Username must be at least 3 characters long';
+    },
+  },
   methods: {
+    ...mapMutations([
+      'setUser',
+    ]),
     login() {
-      if (this.user && this.user.length > 3) {
-        console.log(this.user);
+      if (this.user && this.user.length >= 3) {
+        this.setUser({ user: this.user });
       } else {
         this.displayError = true;
         this.errorStyling = true;
